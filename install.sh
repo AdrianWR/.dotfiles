@@ -8,7 +8,6 @@ git clone --bare git@github.com:AdrianWR/Dotfiles.git $HOME/.cfg
 function config {
    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
-rm $HOME/README.md
 mkdir -p .config-backup
 config checkout
 if [ $? = 0 ]; then
@@ -20,3 +19,4 @@ fi;
 config checkout
 config submodule update --init --recursive
 config config status.showUntrackedFiles no
+rm $HOME/README.md $HOME/install.sh
