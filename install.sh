@@ -4,7 +4,9 @@
 # repository to sync your configurations across
 # UNIX machines. Tested only on Linux, for now.
 
-git clone --bare git@github.com:AdrianWR/Dotfiles.git $HOME/.cfg
+DEFAULT_BRANCH=linux
+
+git clone --bare git@github.com:AdrianWR/Dotfiles.git $HOME/.cfg -b ${1:-$DEFAULT_BRANCH}
 function config {
    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
@@ -19,4 +21,3 @@ fi;
 config checkout
 config submodule update --init --recursive
 config config status.showUntrackedFiles no
-rm $HOME/README.md $HOME/install.sh
