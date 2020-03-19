@@ -21,10 +21,11 @@ config push -u origin [your-system-os-branch]
 ```
 
 ## Installation
-Again, the installation script is given by @durdn, and has the advantage that system pre-existing dotfiles are moved to a backup directory on `$HOME/.config-backup`. A minor addition is the use of submodules to get the vim configuration and plugins. To ease of use, I'm going to link a script on the current repository that automates the process on your local machine.
+Again, the installation script is given by @durdn, and has the advantage that system pre-existing dotfiles are moved to a backup directory on `$HOME/.config-backup`. A minor addition is the use of submodules to get the vim configuration and plugins, besides the OS selection at branch level. To ease of use, I'm going to link a script on the current repository that automates the process on your local machine.
 
 ```shell
-git clone --bare git@github.com:AdrianWR/Dotfiles.git $HOME/.cfg
+DEFAULT_BRANCH=linux
+git clone --bare git@github.com:AdrianWR/Dotfiles.git $HOME/.cfg -b ${1:-$DEFAULT_BRANCH}
 function config {
    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
@@ -39,11 +40,10 @@ fi;
 config checkout
 config submodule update --init --recursive
 config config status.showUntrackedFiles no
-rm $HOME/README.md $HOME/install.sh
 ```
 
 ### Automated install
 Here I'm using `curl` and `zsh`, but you can use whatever URL transfer software or shell interpreter.
 ```
-curl https://raw.githubusercontent.com/AdrianWR/Dotfiles/master/install.sh | /bin/zsh
+curl https://raw.githubusercontent.com/AdrianWR/Dotfiles/master/install.sh [os_branch=linux] | /bin/zsh
 ```
