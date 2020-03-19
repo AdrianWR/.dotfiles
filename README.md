@@ -44,4 +44,6 @@ rm $HOME/README.md $HOME/install.sh
 
 ### Automated install
 Here I'm using curl and zsh, but you can use whatever URL transfer software or shell interpreter.
-    curl https://raw.githubusercontent.com/AdrianWR/Dotfiles/master/install.sh | /bin/zsh
+```
+curl https://raw.githubusercontent.com/AdrianWR/Dotfiles/master/install.sh | /bin/zsh
+```
