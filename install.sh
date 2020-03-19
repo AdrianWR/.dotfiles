@@ -14,7 +14,7 @@ if [ $? = 0 ]; then
   echo "Checked out config.";
   else
     echo "Backing up pre-existing dot files to $HOME/.config-backup.";
-    config checkout 2>&1 | egrep "\s+\." | tr :-d '\t' | xargs -I{} mv {} .config-backup/{}
+    config checkout 2>&1 | egrep "\s+\." | tr -d '\t' | xargs -I{} mv {} .config-backup/{}
 fi;
 config checkout
 config config status.showUntrackedFiles no
