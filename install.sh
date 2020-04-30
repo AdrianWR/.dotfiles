@@ -6,7 +6,7 @@
 
 DEFAULT_BRANCH=linux
 
-git clone --bare git@github.com:AdrianWR/Dotfiles.git $HOME/.cfg -b ${1:-$DEFAULT_BRANCH}
+git clone --bare https://github.com/AdrianWR/Dotfiles.git $HOME/.cfg -b ${1:-$DEFAULT_BRANCH}
 function config {
    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
