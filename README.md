@@ -42,7 +42,7 @@ config config status.showUntrackedFiles no
 ```
 
 ### Automated install
-Here I'm using `curl` and `zsh`, but you can use whatever URL transfer software or shell interpreter.
+Here I'm using curl and zsh, but you can use whatever URL transfer software or shell interpreter.
 ```
 curl -s https://raw.githubusercontent.com/AdrianWR/Dotfiles/master/install.sh | /bin/zsh -s [os_branch=linux]
 ```
