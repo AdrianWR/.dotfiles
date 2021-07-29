@@ -1,0 +1,15 @@
+[user]
+	email = adrian.w.roque@gmail.com
+	name = Adrian Roque
+	signingKey = null
+[gpg]
+	program = null
+[commit]
+	gpgsign = false
+[tag]
+	forceSignAnnotated = null
+[core]
+	autocrlf = false
+	editor = vim
+[alias]
+	tree = "log --all --decorate --oneline --graph"
