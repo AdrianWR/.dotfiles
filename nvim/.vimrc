@@ -264,3 +264,16 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" Clang Format Options
+let g:python_host_prog='/usr/bin/python2' 
+let g:python3_host_prog='/usr/bin/python3' 
+let g:clang_format_fallback_style='llvm'
+
+map <C-K> :pyf $HOME/.vim/clang-format.py<cr>
+imap <C-K> <c-o>:pyf $HOME/.vim/clang-format.py<cr>
+function! Formatonsave()
+  let l:lines = "all"
+  let l:formatdiff = 1
+  pyf $HOME/.vim/clang-format.py
+endfunction
+autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()

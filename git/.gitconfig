@@ -13,3 +13,5 @@
 	editor = vim
 [alias]
 	tree = "log --all --decorate --oneline --graph"
+[init]
+	defaultBranch = main
