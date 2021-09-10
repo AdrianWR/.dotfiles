@@ -138,3 +138,4 @@ export PATH=$PATH:/usr/local/go/bin
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
+alias open=xdg-open
