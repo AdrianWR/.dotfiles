@@ -15,7 +15,7 @@
 "           |8888Z' ,DDDDDDDNNNNF`
 "           |88Z'    'DNNNNNNN"
 "           '"'        'MMMM"
-"
+
 "----------------------------
 "--- Global Configurations --
 "----------------------------
@@ -68,23 +68,37 @@ set smartindent
 
 "Auto-close preview windows
 autocmd CompleteDone * pclose
+"Buffer Management Maps
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
+"-----------------------------
+"--- $MYVIMRC Configuration --
+"-----------------------------
 
 "Easy ~/.vimrc configuration from CLI
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+augroup vimrc
+	autocmd! BufWritePost $MYVIMRC source $MYVIMRC "| echom 'Sourced $MYVIMRC'
+augroup end
 
-"C and C++ comments
-set comments=sr:/*,m:**,ex:*/
 
-"Buffer Management Maps
-nnoremap <F5> :buffers<CR>:buffer<Space>
+"-----------------------------
+"--- NERDTree Configuration --
+"-----------------------------
 
-"NERDTree Configuration
 map <C-n> :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * NERDTree | wincmd p
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
+augroup nerdtree
+    " Start NERDTree when Vim is started without file arguments.
+	"autocmd StdinReadPre * let s:std_in=1
+	"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+	"
+	" Close the tab if NERDTree is the only window remaining in it.
+	autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+	"" Start NERDTree and put the cursor back in the other window.
+	autocmd VimEnter * NERDTree | wincmd p
+augroup end
 
 "VimTest Configuration
 nmap <silent> t<C-n> :TestNearest<CR>
@@ -263,3 +277,5 @@ augroup autocommands
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+
