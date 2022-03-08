@@ -70,6 +70,9 @@ set smartindent
 autocmd CompleteDone * pclose
 "Buffer Management Maps
 nnoremap <F5> :buffers<CR>:buffer<Space>
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :noh<CR><CR>:<backspace>
+
 
 "-----------------------------
 "--- $MYVIMRC Configuration --

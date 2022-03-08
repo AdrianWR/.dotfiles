@@ -139,3 +139,8 @@ export PATH=$PATH:/usr/local/go/bin
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
 alias open=xdg-open
+
+# add .local/bin to the PATH
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
