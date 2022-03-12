@@ -47,6 +47,15 @@ call plug#begin()
 	Plug 'sheerun/vim-polyglot'
 	Plug 'github/copilot.vim'
 call plug#end()
+let g:coc_global_extensions = [
+\	'coc-clangd',
+\	'coc-tsserver',
+\	'coc-yaml',
+\	'coc-json',
+\	'coc-css',
+\	'coc-html',
+\	'coc-python',
+\]
 
 set mouse=a
 
@@ -279,6 +288,7 @@ augroup autocommands
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " Enable folding for JSON and YAML.
+  " NOTE: Requires 'textDocument.foldingRange' support from the language server.
+  autocmd FileType json,yaml setl foldmethod=expr foldexpr=CocAction('fold')
 augroup end
-
-
