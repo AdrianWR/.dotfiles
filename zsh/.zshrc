@@ -135,6 +135,7 @@ complete -C '/usr/local/bin/aws_completer' aws
 
 # Go Configuration
 export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
@@ -144,3 +145,4 @@ alias open=xdg-open
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+

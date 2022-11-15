@@ -20,11 +20,15 @@
 "--- Global Configurations --
 "----------------------------
 
+"<Leader> Key Definition
+let mapleader = ","
+
 set nocompatible
 filetype off 
+set number
+set mouse=a
+"set termguicolors
 
-set termguicolors
-let g:gruvbox_contrast_dark = 'hard'
 
 " Install vim.plug automatically
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -43,10 +47,13 @@ call plug#begin()
 	Plug 'pbondoer/vim-42header'
 	Plug 'itchyny/lightline.vim'
 	Plug 'morhetz/gruvbox'
+	Plug 'cdelledonne/vim-cmake'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'sheerun/vim-polyglot'
 	Plug 'github/copilot.vim'
+	Plug 'alepez/vim-gtest'
 call plug#end()
+
 let g:coc_global_extensions = [
 \	'coc-clangd',
 \	'coc-tsserver',
@@ -54,18 +61,13 @@ let g:coc_global_extensions = [
 \	'coc-json',
 \	'coc-css',
 \	'coc-html',
-\	'coc-python',
 \]
 
-set mouse=a
 
 "Colorscheme Management
 silent! colorscheme gruvbox
 set background=dark
-set number
 
-"<Leader> Key Definition
-let mapleader = ","
 
 "General Indent Options
 set noexpandtab
@@ -79,9 +81,32 @@ set smartindent
 autocmd CompleteDone * pclose
 "Buffer Management Maps
 nnoremap <F5> :buffers<CR>:buffer<Space>
-"This unsets the "last search pattern" register by hitting return
+"Unsets the <<last search pattern>> register
 nnoremap <CR> :noh<CR><CR>:<backspace>
 
+"Remaps for switching windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-h> <c-w>h
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+
+"-------------------------------
+"--- vim-cmake Configuration ---
+"-------------------------------
+
+let g:cmake_link_compile_commands = 1
+let g:cmake_console_size = 10
+let g:cmake_build_dir_location = 'build'
+nmap <leader>cg :CMakeGenerate<cr>
+nmap <leader>cb :CMakeBuild<cr>
+nmap <leader>cc :CMakeClose<cr>
+
+"-------------------------------
+"--- vim-gtest Configuration ---
+"-------------------------------
+
+nmap <leader>gt :GTestRunUnderCursor<cr>
 
 "-----------------------------
 "--- $MYVIMRC Configuration --
@@ -93,6 +118,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 augroup vimrc
 	autocmd! BufWritePost $MYVIMRC source $MYVIMRC "| echom 'Sourced $MYVIMRC'
 augroup end
+
 
 
 "-----------------------------
@@ -112,12 +138,6 @@ augroup nerdtree
 	autocmd VimEnter * NERDTree | wincmd p
 augroup end
 
-"VimTest Configuration
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
 
 """"""""""""""""""""""""""""""
 """ Coc.Nvim Configuration """
