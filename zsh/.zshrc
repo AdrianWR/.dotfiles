@@ -111,17 +111,10 @@ if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
 alias k=kubectl
 complete -F __start_kubectl k
 
-# Pyenv PATH Configuration
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-# Poetry Configuration
-export PATH="$HOME/.poetry/bin:$PATH"
-
 # NVM Configuration
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export MAIL="aroque@student.42sp.org.br"
 autoload -U +X bashcompinit && bashcompinit
@@ -131,7 +124,6 @@ complete -o nospace -C /usr/bin/terraform terraform
 # AWS CLI Configuration
 autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Go Configuration
 export PATH=$PATH:/usr/local/go/bin
@@ -140,9 +132,3 @@ export GOPATH=$HOME/go
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
 alias open=xdg-open
-
-# add .local/bin to the PATH
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
